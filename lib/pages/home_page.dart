@@ -91,7 +91,6 @@ class MemeView extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16),
       itemBuilder: (context, snapshot) {
         final Meme meme = snapshot.data();
-        debugPrint(meme.toJson());
         return MemeCard(meme: meme);
       },
     );
@@ -123,7 +122,7 @@ class MemeCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.network(
-                  'https://europe-west3-influx-kit.cloudfunctions.net/cors?url=' + meme.url,
+                  meme.url,
                   fit: BoxFit.cover,
                 ),
               ),

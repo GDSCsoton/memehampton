@@ -10,6 +10,21 @@
             "type": "dart"
         },
         {
+            "name": "Run Web App",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "chrome",
+            "args": [
+                "--web-renderer",
+                "html",
+                // Fixes the port for auth whitelisting purposes
+                "--web-hostname",
+                "localhost",
+                "--web-port",
+                "5000",
+            ]
+        },
+        {
             "name": "Run App (profile mode)",
             "request": "launch",
             "type": "dart",
