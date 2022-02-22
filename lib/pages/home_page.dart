@@ -1,7 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/firestore.dart';
 import 'package:go_router/go_router.dart';
+import 'package:memeampton/database.dart';
+
+import 'package:memeampton/models/meme.dart';
 import 'package:memeampton/pages/new_meme_page.dart';
 import 'package:memeampton/pages/sign_in_page.dart';
 
@@ -47,8 +51,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabBarController,
         children: [
-          Center(child: Text('LATEST')),
-          Center(child: Text('POPULAR')),
+          MemeView(filter: MemeFilter.latest),
+          MemeView(filter: MemeFilter.popular),
         ],
       ),
       floatingActionButton: OpenContainer(
@@ -67,6 +71,81 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         openBuilder: (BuildContext context, _) {
           return NewMemPage();
         },
+      ),
+    );
+  }
+}
+
+class MemeView extends StatelessWidget {
+  MemeView({
+    Key? key,
+    required this.filter,
+  }) : super(key: key);
+
+  final MemeFilter filter;
+
+  @override
+  Widget build(BuildContext context) {
+    return FirestoreListView<Meme>(
+      query: Database.getMemes(filter),
+      padding: EdgeInsets.symmetric(vertical: 16),
+      itemBuilder: (context, snapshot) {
+        final Meme meme = snapshot.data();
+        debugPrint(meme.toJson());
+        return MemeCard(meme: meme);
+      },
+    );
+  }
+}
+
+class MemeCard extends StatelessWidget {
+  const MemeCard({
+    Key? key,
+    required this.meme,
+  }) : super(key: key);
+
+  final Meme meme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          clipBehavior: Clip.antiAlias,
+          elevation: 8,
+          margin: EdgeInsets.zero,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Image.network(
+                  'https://europe-west3-influx-kit.cloudfunctions.net/cors?url=' + meme.url,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Row(
+                children: [
+                  const SizedBox(width: 16),
+                  Text('${meme.votes} votes'),
+                  const SizedBox(width: 16),
+                  IconButton(
+                    onPressed: () => Database.upvoteMeme(meme),
+                    icon: Icon(Icons.thumb_up_rounded),
+                  ),
+                  const SizedBox(width: 16),
+                  IconButton(
+                    onPressed: () => Database.downvote(meme),
+                    icon: Icon(Icons.thumb_down_rounded),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -7,8 +7,12 @@
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
         "editor.rulers": [
-            120
+            100
         ],
     },
-    "dart.lineLength": 120,
+    "dart.lineLength": 100,
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+    }
 }
