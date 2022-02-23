@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Meme {
   Meme({
     required this.uid,
@@ -7,6 +9,7 @@ class Meme {
     required this.createdAt,
     required this.votes,
     required this.id,
+    required this.caption,
   });
 
   final String id;
@@ -14,14 +17,16 @@ class Meme {
   final String url;
   final DateTime createdAt;
   final int votes;
+  final String caption;
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'uid': uid,
       'url': url,
-      'createdAt': createdAt.millisecondsSinceEpoch,
+      'createdAt': Timestamp.fromDate(createdAt),
       'votes': votes,
+      'caption': caption,
     };
   }
 
@@ -30,8 +35,9 @@ class Meme {
       id: map['id'] ?? '',
       uid: map['uid'] ?? '',
       url: map['url'] ?? '',
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
+      createdAt: (map['createdAt'] as Timestamp).toDate(),
       votes: map['votes']?.toInt() ?? 0,
+      caption: map['caption'] ?? '',
     );
   }
 

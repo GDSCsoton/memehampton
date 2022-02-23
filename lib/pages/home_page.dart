@@ -27,23 +27,24 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     _tabBarController.dispose();
   }
 
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+    context.go(SignInPage.path);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Memehampton'),
         bottom: TabBar(
           tabs: [Tab(text: 'LATEST'), Tab(text: 'POPULAR')],
           controller: _tabBarController,
+          isScrollable: true,
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-              context.go(SignInPage.path);
-            },
+            onPressed: signOut,
             icon: Icon(Icons.logout),
           )
         ],
@@ -55,23 +56,34 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           MemeView(filter: MemeFilter.popular),
         ],
       ),
-      floatingActionButton: OpenContainer(
-        transitionType: ContainerTransitionType.fade,
-        closedShape: CircleBorder(),
-        tappable: false,
-        closedColor: theme.colorScheme.secondary,
-        closedBuilder: (BuildContext context, VoidCallback action) {
-          return FloatingActionButton(
-            elevation: 0,
-            tooltip: 'New Meme',
-            onPressed: action,
-            child: Icon(Icons.add),
-          );
-        },
-        openBuilder: (BuildContext context, _) {
-          return NewMemPage();
-        },
-      ),
+      floatingActionButton: NewMemeButton(),
+    );
+  }
+}
+
+class NewMemeButton extends StatelessWidget {
+  const NewMemeButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return OpenContainer(
+      transitionType: ContainerTransitionType.fade,
+      closedShape: CircleBorder(),
+      tappable: false,
+      closedColor: theme.colorScheme.secondary,
+      closedBuilder: (BuildContext context, VoidCallback action) {
+        return FloatingActionButton(
+          elevation: 0,
+          tooltip: 'New Meme',
+          onPressed: action,
+          child: Icon(Icons.add),
+        );
+      },
+      openBuilder: (BuildContext context, _) {
+        return NewMemPage();
+      },
     );
   }
 }
@@ -124,21 +136,23 @@ class MemeCard extends StatelessWidget {
                 child: Image.network(
                   meme.url,
                   fit: BoxFit.cover,
+                  semanticLabel: meme.caption,
                 ),
               ),
               Row(
                 children: [
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Text('${meme.votes} votes'),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   IconButton(
                     onPressed: () => Database.upvoteMeme(meme),
-                    icon: Icon(Icons.thumb_up_rounded),
+                    icon: Icon(Icons.arrow_upward_rounded),
+                    color: Colors.green,
                   ),
-                  const SizedBox(width: 16),
                   IconButton(
                     onPressed: () => Database.downvoteMeme(meme),
-                    icon: Icon(Icons.thumb_down_rounded),
+                    icon: Icon(Icons.arrow_downward_rounded),
+                    color: Colors.red,
                   )
                 ],
               ),

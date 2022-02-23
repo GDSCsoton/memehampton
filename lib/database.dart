@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:memehampton/models/meme.dart';
 
 class Database {
@@ -29,5 +30,25 @@ class Database {
     return _memesCollection //
         .doc(meme.id)
         .update({'votes': FieldValue.increment(upvote ? 1 : -1)});
+  }
+
+  static Future<void> createMeme({
+    required String imageUrl,
+    required String imageCaption,
+  }) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    DocumentReference<Meme> doc = _memesCollection.doc();
+
+    Meme meme = Meme(
+      id: doc.id,
+      uid: auth.currentUser!.uid,
+      url: imageUrl,
+      createdAt: DateTime.now(),
+      votes: 0,
+      caption: imageCaption,
+    );
+
+    await doc.set(meme);
   }
 }
