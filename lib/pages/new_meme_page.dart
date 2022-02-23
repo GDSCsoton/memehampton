@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -63,10 +64,16 @@ class _NewMemPageState extends State<NewMemPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size windowSize = MediaQuery.of(context).size;
+    double horizontalPadding = math.max(0, ((windowSize.width - 720) / 2));
+
     return Scaffold(
       appBar: AppBar(title: Text('New Meme')),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding,
+          vertical: 16,
+        ),
         children: [
           MemePreview(
             imageBytes: _imageBytes,

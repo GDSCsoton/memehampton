@@ -1,6 +1,6 @@
 #!/bin/bash
 set +e
 
-sudo rm -r build/
-flutter build web --web-renderer html
+rm -r build/
+flutter build web --web-renderer canvaskit
 firebase deploy --only hosting:memehampton
