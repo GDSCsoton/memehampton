@@ -51,4 +51,8 @@ class Database {
 
     await doc.set(meme);
   }
+
+  static Future<void> deleteMeme(Meme meme) async {
+    await _memesCollection.doc(meme.id).delete();
+  }
 }

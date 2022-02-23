@@ -123,6 +123,9 @@ class MemeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    bool isOwner = auth.currentUser!.uid == meme.uid;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: AspectRatio(
@@ -157,7 +160,14 @@ class MemeCard extends StatelessWidget {
                     onPressed: () => Database.downvoteMeme(meme),
                     icon: Icon(Icons.arrow_downward_rounded),
                     color: Colors.red,
-                  )
+                  ),
+                  Spacer(),
+                  if (isOwner)
+                    IconButton(
+                      onPressed: () => Database.deleteMeme(meme),
+                      icon: Icon(Icons.delete),
+                      color: Colors.grey,
+                    ),
                 ],
               ),
             ],

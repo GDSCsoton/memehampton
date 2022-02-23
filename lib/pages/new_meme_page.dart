@@ -65,7 +65,7 @@ class _NewMemPageState extends State<NewMemPage> {
   @override
   Widget build(BuildContext context) {
     Size windowSize = MediaQuery.of(context).size;
-    double horizontalPadding = math.max(0, ((windowSize.width - 720) / 2));
+    double horizontalPadding = math.max(16, ((windowSize.width - 720) / 2));
 
     return Scaffold(
       appBar: AppBar(title: Text('New Meme')),
