@@ -1,27 +1,20 @@
-image:
-  file: .gitpod.Dockerfile
 tasks:
   - before: sudo mount -t tmpfs shm -osize=4096m /dev/shm
   - init: |
-      flutter channel stable
-      flutter upgrade
-      yes | flutter doctor --android-licenses
-      flutter doctor
+      git clone https://github.com/flutter/flutter.git --depth 1 -b stable "/home/gitpod/flutter"
+      echo "export PATH=$PATH:home/gitpod/flutter/bin" >> /home/gitpod/.bashrc
+      echo "export PATH=$PATH:home/gitpod/.pub-cache/bin" >> /home/gitpod/.bashrc
+      source /home/gitpod/.bashrc
+      flutter precache
       flutter pub get
-      flutter build -v web
-      
+      flutter build -v web --web-renderer canvaskit
   - command: |
       flutter devices
       flutter run --web-port 8080 --web-renderer canvaskit
 ports:
-  - port: 5900
-    onOpen: ignore
-    # vnc
-  - port: 6080
-    onOpen: open-preview
     # flutter
   - port: 8080
-    onOpen: open-preview
+    onOpen: open-browser
 
 vscode:
   extensions:
