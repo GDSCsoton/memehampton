@@ -10,7 +10,7 @@ import 'package:memeampton/pages/new_meme_page.dart';
 import 'package:memeampton/pages/sign_in_page.dart';
 
 class HomePage extends StatefulWidget {
-  static const path = '/home';
+  static const path = '/';
 
   const HomePage({Key? key}) : super(key: key);
 
@@ -137,7 +137,7 @@ class MemeCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   IconButton(
-                    onPressed: () => Database.downvote(meme),
+                    onPressed: () => Database.downvoteMeme(meme),
                     icon: Icon(Icons.thumb_down_rounded),
                   )
                 ],

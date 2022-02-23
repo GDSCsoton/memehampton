@@ -22,10 +22,10 @@ void main() async {
 }
 
 FirebaseOptions _decodedFirebaseOptions() {
-  final map = DefaultFirebaseOptions.currentPlatform.asMap.entries
-      .where((entry) => entry.value != null)
-      .map((entry) => MapEntry(entry.key, utf8.fuse(base64).decode(entry.value!)))
-      .fold<Map<String, String>>({}, (prev, elem) => {elem.key: elem.value, ...prev});
+  final map = DefaultFirebaseOptions.currentPlatform.asMap;
+  for (var entry in map.entries.where((e) => e.value != null)) {
+    map[entry.key] = utf8.fuse(base64).decode(map[entry.key]!);
+  }
   return FirebaseOptions.fromMap(map);
 }
 

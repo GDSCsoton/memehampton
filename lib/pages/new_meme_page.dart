@@ -8,6 +8,17 @@ class NewMemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Create Meme')),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AspectRatio(
+            aspectRatio: 1,
+            child: Container(
+              decoration: BoxDecoration(border: Border.all(style: BorderStyle.solid)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

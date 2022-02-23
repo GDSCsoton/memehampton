@@ -20,7 +20,7 @@ class Database {
   }
 
   static Future<void> upvoteMeme(Meme meme) => _updateVote(meme: meme, upvote: true);
-  static Future<void> downvote(Meme meme) => _updateVote(meme: meme, upvote: false);
+  static Future<void> downvoteMeme(Meme meme) => _updateVote(meme: meme, upvote: false);
 
   static Future<void> _updateVote({
     required Meme meme,
