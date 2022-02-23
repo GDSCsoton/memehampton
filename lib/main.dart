@@ -6,10 +6,10 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:memeampton/firebase_options.dart';
-import 'package:memeampton/pages/home_page.dart';
-import 'package:memeampton/pages/sign_in_page.dart';
-import 'package:memeampton/pages/new_meme_page.dart';
+import 'package:memehampton/firebase_options.dart';
+import 'package:memehampton/pages/home_page.dart';
+import 'package:memehampton/pages/sign_in_page.dart';
+import 'package:memehampton/pages/new_meme_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ void main() async {
   await FirebaseAuth.instance.authStateChanges().first;
   // Remove the # symbol from the url
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
-  runApp(MemeamptonApp());
+  runApp(MemehamptonApp());
 }
 
 FirebaseOptions _decodedFirebaseOptions() {
@@ -29,8 +29,8 @@ FirebaseOptions _decodedFirebaseOptions() {
   return FirebaseOptions.fromMap(map);
 }
 
-class MemeamptonApp extends StatelessWidget {
-  MemeamptonApp({Key? key}) : super(key: key);
+class MemehamptonApp extends StatelessWidget {
+  MemehamptonApp({Key? key}) : super(key: key);
 
   late final GoRouter _router = GoRouter(
     routes: [
@@ -58,7 +58,7 @@ class MemeamptonApp extends StatelessWidget {
     );
 
     return MaterialApp.router(
-      title: 'Memeampton',
+      title: 'Memehampton',
       theme: colorScheme.toTheme,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,

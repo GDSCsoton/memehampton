@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:memeampton/pages/home_page.dart';
+import 'package:memehampton/pages/home_page.dart';
 
 class SignInPage extends StatelessWidget {
   static const String path = '/sign-in';

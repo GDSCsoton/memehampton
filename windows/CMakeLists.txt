@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(memeampton LANGUAGES CXX)
+project(memehampton LANGUAGES CXX)
 
-set(BINARY_NAME "memeampton")
+set(BINARY_NAME "memehampton")
 
 cmake_policy(SET CMP0063 NEW)
 

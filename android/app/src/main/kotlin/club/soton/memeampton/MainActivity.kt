@@ -1,4 +1,4 @@
-package club.soton.memeampton
+package club.soton.memehampton
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:go_router/go_router.dart';
-import 'package:memeampton/database.dart';
+import 'package:memehampton/database.dart';
 
-import 'package:memeampton/models/meme.dart';
-import 'package:memeampton/pages/new_meme_page.dart';
-import 'package:memeampton/pages/sign_in_page.dart';
+import 'package:memehampton/models/meme.dart';
+import 'package:memehampton/pages/new_meme_page.dart';
+import 'package:memehampton/pages/sign_in_page.dart';
 
 class HomePage extends StatefulWidget {
   static const path = '/';
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memeampton'),
+        title: Text('Memehampton'),
         bottom: TabBar(
           tabs: [Tab(text: 'LATEST'), Tab(text: 'POPULAR')],
           controller: _tabBarController,

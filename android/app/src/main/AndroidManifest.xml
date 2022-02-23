@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="club.soton.memeampton">
+    package="club.soton.memehampton">
    <application
-        android:label="memeampton"
+        android:label="memehampton"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

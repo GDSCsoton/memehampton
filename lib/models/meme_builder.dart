@@ -1,4 +1,4 @@
-import 'package:memeampton/models/meme.dart';
+import 'package:memehampton/models/meme.dart';
 
 class MemeBuilder {
   String? id;

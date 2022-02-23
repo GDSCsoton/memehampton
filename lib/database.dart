@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:memeampton/models/meme.dart';
+import 'package:memehampton/models/meme.dart';
 
 class Database {
   static final CollectionReference<Meme> _memesCollection = FirebaseFirestore //

@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "club.soton.memeampton"
+        applicationId "club.soton.memehampton"
         // minSdkVersion flutter.minSdkVersion
         minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion

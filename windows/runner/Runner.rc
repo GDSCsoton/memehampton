@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "club.soton" "\0"
-            VALUE "FileDescription", "memeampton" "\0"
+            VALUE "FileDescription", "memehampton" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "memeampton" "\0"
+            VALUE "InternalName", "memehampton" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 club.soton. All rights reserved." "\0"
-            VALUE "OriginalFilename", "memeampton.exe" "\0"
-            VALUE "ProductName", "memeampton" "\0"
+            VALUE "OriginalFilename", "memehampton.exe" "\0"
+            VALUE "ProductName", "memehampton" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
