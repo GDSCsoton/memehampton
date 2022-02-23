@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Meme {
@@ -19,7 +17,7 @@ class Meme {
   final int votes;
   final String caption;
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toDocument() {
     return {
       'id': id,
       'uid': uid,
@@ -30,7 +28,7 @@ class Meme {
     };
   }
 
-  factory Meme.fromMap(Map<String, dynamic> map) {
+  factory Meme.fromDocument(Map<String, dynamic> map) {
     return Meme(
       id: map['id'] ?? '',
       uid: map['uid'] ?? '',
@@ -40,10 +38,6 @@ class Meme {
       caption: map['caption'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Meme.fromJson(String source) => Meme.fromMap(json.decode(source));
 }
 
 enum MemeFilter { latest, popular }

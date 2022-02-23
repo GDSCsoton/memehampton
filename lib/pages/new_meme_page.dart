@@ -16,8 +16,6 @@ class NewMemPage extends StatefulWidget {
 }
 
 class _NewMemPageState extends State<NewMemPage> {
-  final FirebaseStorage storage = FirebaseStorage.instance;
-
   Uint8List? _imageBytes;
   String _imageCaption = '';
   final GlobalKey _repaintBoundaryKey = GlobalKey();
@@ -31,6 +29,7 @@ class _NewMemPageState extends State<NewMemPage> {
   }
 
   Future<String> uploadImage(Uint8List imageBytes) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
     String imageId = DateTime.now().millisecondsSinceEpoch.toString();
     Reference reference = storage.ref('memes/$imageId.png');
     await reference.putData(

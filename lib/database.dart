@@ -7,8 +7,8 @@ class Database {
       .instance
       .collection('memes')
       .withConverter<Meme>(
-        fromFirestore: (snapshot, _) => Meme.fromMap(snapshot.data()!),
-        toFirestore: (meme, _) => meme.toMap(),
+        fromFirestore: (snapshot, _) => Meme.fromDocument(snapshot.data()!),
+        toFirestore: (meme, _) => meme.toDocument(),
       );
 
   static Query<Meme> getMemes(MemeFilter filter) {

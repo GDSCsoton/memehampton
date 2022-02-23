@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:animations/animations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: TabBarView(
         controller: _tabBarController,
         children: [
-          MemeView(filter: MemeFilter.latest),
-          MemeView(filter: MemeFilter.popular),
+          MemeList(filter: MemeFilter.latest),
+          MemeList(filter: MemeFilter.popular),
         ],
       ),
       floatingActionButton: NewMemeButton(),
@@ -88,8 +89,8 @@ class NewMemeButton extends StatelessWidget {
   }
 }
 
-class MemeView extends StatelessWidget {
-  MemeView({
+class MemeList extends StatelessWidget {
+  MemeList({
     Key? key,
     required this.filter,
   }) : super(key: key);
@@ -98,9 +99,12 @@ class MemeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size windowSize = MediaQuery.of(context).size;
+    double horizontalPadding = math.max(0, ((windowSize.width - 720) / 2));
+
     return FirestoreListView<Meme>(
       query: Database.getMemes(filter),
-      padding: EdgeInsets.symmetric(vertical: 16),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: horizontalPadding),
       itemBuilder: (context, snapshot) {
         final Meme meme = snapshot.data();
         return MemeCard(meme: meme);
