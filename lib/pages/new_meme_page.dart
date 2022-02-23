@@ -62,30 +62,27 @@ class _NewMemPageState extends State<NewMemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Create Meme')),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            MemePreview(
-              imageBytes: _imageBytes,
-              onImageSelected: (image) => setImage(image),
-              caption: _imageCaption,
-              repaintBoundaryKey: _repaintBoundaryKey,
-            ),
-            SizedBox(height: 16),
-            TextField(
-              decoration: InputDecoration(hintText: 'Caption'),
-              onChanged: (caption) => setCaption(caption),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => uploadMeme(),
-              child: Text('Upload Meme'),
-            )
-          ],
-        ),
+      appBar: AppBar(title: Text('New Meme')),
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
+          MemePreview(
+            imageBytes: _imageBytes,
+            onImageSelected: (image) => setImage(image),
+            caption: _imageCaption,
+            repaintBoundaryKey: _repaintBoundaryKey,
+          ),
+          SizedBox(height: 16),
+          TextField(
+            decoration: InputDecoration(hintText: 'Caption'),
+            onChanged: (caption) => setCaption(caption),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => uploadMeme(),
+            child: Text('Upload Meme'),
+          )
+        ],
       ),
     );
   }

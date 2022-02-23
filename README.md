@@ -17,6 +17,12 @@ dart pub global activate flutterfire_cli
 flutterfire configure
 ```
 
+# Firebase Storage Cors
+
+`gsutil cors set cors.json gs://<your-cloud-storage-bucket>`
+
+https://firebase.google.com/docs/storage/web/download-files#cors_configuration
+
 
 
 https://rydmike.com/flexcolorschemeV4Tut5/
