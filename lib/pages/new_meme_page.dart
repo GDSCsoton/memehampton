@@ -123,6 +123,8 @@ class MemePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
@@ -137,7 +139,13 @@ class MemePreview extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 imageBytes == null
-                    ? Center(child: Icon(Icons.image))
+                    ? Center(
+                        child: Icon(
+                          Icons.add_photo_alternate_rounded,
+                          color: colorScheme.primary,
+                          size: 128,
+                        ),
+                      )
                     : Image.memory(imageBytes!, fit: BoxFit.cover),
                 MemeText(text: caption),
               ],
