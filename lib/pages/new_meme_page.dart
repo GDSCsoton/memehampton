@@ -33,7 +33,10 @@ class _NewMemPageState extends State<NewMemPage> {
   Future<String> uploadImage(Uint8List imageBytes) async {
     String imageId = DateTime.now().millisecondsSinceEpoch.toString();
     Reference reference = storage.ref('memes/$imageId.png');
-    await reference.putData(imageBytes, SettableMetadata(customMetadata: {}));
+    await reference.putData(
+      imageBytes,
+      SettableMetadata(contentType: 'image/png'),
+    );
     return reference.getDownloadURL();
   }
 

@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
         actions: [
           IconButton(
-            onPressed: signOut,
+            onPressed: () => signOut(),
             icon: Icon(Icons.logout),
           )
         ],
