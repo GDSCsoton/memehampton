@@ -5,20 +5,12 @@ tasks:
       git clone https://github.com/flutter/flutter.git --depth 1 -b stable "/home/gitpod/flutter"
       echo "export PATH=$PATH:/home/gitpod/flutter/bin:/home/gitpod/.pub-cache/bin" >> /home/gitpod/.bashrc
       source /home/gitpod/.bashrc
+      which flutter
       flutter precache
       flutter pub get
-      flutter build -v web --web-renderer canvaskit
     command: |
       flutter devices
-      flutter run --web-port 8080 --web-renderer canvaskit
-  - name: Install Chrome
-    init: |
-      apt-get update \
-      && apt-get install -y apt-transport-https \
-      && curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-      && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-      && apt-get update \
-      && sudo apt-get install -y google-chrome-stable
+      flutter run --web-port 5000 --web-renderer canvaskit
 ports:
     # flutter
   - port: 5000
