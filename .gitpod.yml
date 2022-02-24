@@ -8,6 +8,7 @@ tasks:
       which flutter
       flutter precache
       flutter pub get
+      code .
     # command: |
       # flutter run --web-port 5000 --web-renderer canvaskit
 ports:
