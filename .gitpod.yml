@@ -5,7 +5,6 @@ tasks:
       git clone https://github.com/flutter/flutter.git --depth 1 -b stable "/home/gitpod/flutter"
       echo "export PATH=$PATH:/home/gitpod/flutter/bin:/home/gitpod/.pub-cache/bin" >> /home/gitpod/.bashrc
       source /home/gitpod/.bashrc
-      which flutter
       flutter precache
       flutter pub get
       code .
