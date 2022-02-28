@@ -1,11 +1,10 @@
 import 'dart:math' as math;
-import 'package:animations/animations.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:go_router/go_router.dart';
 import 'package:memehampton/database.dart';
-
 import 'package:memehampton/models/meme.dart';
 import 'package:memehampton/pages/new_meme_page.dart';
 import 'package:memehampton/pages/sign_in_page.dart';
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   void signOut() {
     FirebaseAuth.instance.signOut();
-    context.go(SignInPage.path);
+    GoRouter.of(context).go(SignInPage.path);
   }
 
   @override
@@ -67,24 +66,10 @@ class NewMemeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return OpenContainer(
-      transitionType: ContainerTransitionType.fade,
-      closedShape: CircleBorder(),
-      tappable: false,
-      closedColor: theme.colorScheme.secondary,
-      closedBuilder: (BuildContext context, VoidCallback action) {
-        return FloatingActionButton(
-          elevation: 0,
-          tooltip: 'New Meme',
-          onPressed: action,
-          child: Icon(Icons.add),
-        );
-      },
-      openBuilder: (BuildContext context, _) {
-        return NewMemPage();
-      },
+    return FloatingActionButton(
+      tooltip: 'New Meme',
+      onPressed: () => GoRouter.of(context).push(NewMemPage.path),
+      child: Icon(Icons.add),
     );
   }
 }
@@ -106,7 +91,7 @@ class MemeList extends StatelessWidget {
       query: Database.getMemes(filter),
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: horizontalPadding),
       itemBuilder: (context, snapshot) {
-        final Meme meme = snapshot.data();
+        Meme meme = snapshot.data();
         return MemeCard(meme: meme);
       },
     );
@@ -124,7 +109,7 @@ class MemeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    bool isOwner = auth.currentUser!.uid == meme.uid;
+    bool isOwner = auth.currentUser!.uid == meme.userId;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -141,7 +126,7 @@ class MemeCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.network(
-                  meme.url,
+                  meme.imageUrl,
                   fit: BoxFit.cover,
                   semanticLabel: meme.caption,
                 ),
