@@ -11,7 +11,6 @@ import 'package:memehampton/database.dart';
 
 class NewMemPage extends StatefulWidget {
   static const String path = '/new-meme';
-  const NewMemPage({Key? key}) : super(key: key);
 
   @override
   State<NewMemPage> createState() => _NewMemPageState();
@@ -102,12 +101,11 @@ class _NewMemPageState extends State<NewMemPage> {
 
 class MemePreview extends StatelessWidget {
   MemePreview({
-    Key? key,
     required this.caption,
     required this.imageBytes,
     required this.onImageSelected,
     required this.repaintBoundaryKey,
-  }) : super(key: key);
+  });
 
   final String caption;
   final Uint8List? imageBytes;
@@ -162,7 +160,7 @@ class MemePreview extends StatelessWidget {
 }
 
 class MemeText extends StatelessWidget {
-  const MemeText({Key? key, required this.text}) : super(key: key);
+  const MemeText({required this.text});
   final String text;
 
   @override

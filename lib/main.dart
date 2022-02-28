@@ -33,22 +33,20 @@ FirebaseOptions _decodedFirebaseOptions() {
 }
 
 class MemehamptonApp extends StatelessWidget {
-  MemehamptonApp({Key? key}) : super(key: key);
-
   /// Routes the app can navigate to.
   late final GoRouter _router = GoRouter(
     routes: [
       GoRoute(
         path: HomePage.path,
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => HomePage(),
       ),
       GoRoute(
         path: SignInPage.path,
-        builder: (context, state) => const SignInPage(),
+        builder: (context, state) => SignInPage(),
       ),
       GoRoute(
         path: NewMemPage.path,
-        builder: (context, state) => const NewMemPage(),
+        builder: (context, state) => NewMemPage(),
       ),
     ],
     initialLocation: FirebaseAuth.instance.currentUser == null ? SignInPage.path : HomePage.path,

@@ -12,8 +12,6 @@ import 'package:memehampton/pages/sign_in_page.dart';
 class HomePage extends StatefulWidget {
   static const path = '/';
 
-  const HomePage({Key? key}) : super(key: key);
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -62,8 +60,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 }
 
 class NewMemeButton extends StatelessWidget {
-  const NewMemeButton({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -75,10 +71,7 @@ class NewMemeButton extends StatelessWidget {
 }
 
 class MemeList extends StatelessWidget {
-  MemeList({
-    Key? key,
-    required this.filter,
-  }) : super(key: key);
+  const MemeList({required this.filter});
 
   final MemeFilter filter;
 
@@ -99,10 +92,7 @@ class MemeList extends StatelessWidget {
 }
 
 class MemeCard extends StatelessWidget {
-  const MemeCard({
-    Key? key,
-    required this.meme,
-  }) : super(key: key);
+  const MemeCard({required this.meme});
 
   final Meme meme;
 

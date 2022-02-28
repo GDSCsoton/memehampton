@@ -6,8 +6,6 @@ import 'package:memehampton/pages/home_page.dart';
 class SignInPage extends StatelessWidget {
   static const String path = '/sign-in';
 
-  const SignInPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     // A prebuilt sign in screen provided by the flutterfire_ui package.
