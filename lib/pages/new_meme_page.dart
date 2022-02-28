@@ -1,10 +1,11 @@
-import 'dart:typed_data';
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memehampton/database.dart';
 
@@ -21,6 +22,7 @@ class _NewMemPageState extends State<NewMemPage> {
   String _imageCaption = '';
   final GlobalKey _repaintBoundaryKey = GlobalKey();
 
+  /// Takes a screenshot of the [MemePreview] widget.
   Future<Uint8List> captureImage() async {
     RenderRepaintBoundary boundary =
         _repaintBoundaryKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
@@ -29,6 +31,8 @@ class _NewMemPageState extends State<NewMemPage> {
     return byteData!.buffer.asUint8List();
   }
 
+  /// Uploads the image represented by [imageBytes] to Firebase Cloud Storage
+  /// under /memes/<imageId.png>.
   Future<String> uploadImage(Uint8List imageBytes) async {
     FirebaseStorage storage = FirebaseStorage.instance;
     String imageId = DateTime.now().millisecondsSinceEpoch.toString();
@@ -40,14 +44,13 @@ class _NewMemPageState extends State<NewMemPage> {
     return reference.getDownloadURL();
   }
 
+  /// Uploads a screenshot of [MemePreview] to Firebase Cloud Storage then
+  /// adds them a new meme to Firebase Firestore.
   Future<void> uploadMeme() async {
     Uint8List imageBytes = await captureImage();
-
     String url = await uploadImage(imageBytes);
-
     await Database.createMeme(imageCaption: _imageCaption, imageUrl: url);
-
-    Navigator.pop(context);
+    GoRouter.of(context).pop();
   }
 
   void setImage(Uint8List imageBytes) {
@@ -77,14 +80,14 @@ class _NewMemPageState extends State<NewMemPage> {
         children: [
           MemePreview(
             imageBytes: _imageBytes,
-            onImageSelected: (image) => setImage(image),
+            onImageSelected: (Uint8List image) => setImage(image),
             caption: _imageCaption,
             repaintBoundaryKey: _repaintBoundaryKey,
           ),
           SizedBox(height: 16),
           TextField(
             decoration: InputDecoration(hintText: 'Caption'),
-            onChanged: (caption) => setCaption(caption),
+            onChanged: (String caption) => setCaption(caption),
           ),
           SizedBox(height: 16),
           ElevatedButton(
@@ -113,6 +116,7 @@ class MemePreview extends StatelessWidget {
 
   final ImagePicker picker = ImagePicker();
 
+  /// Displays a file picker menu.
   Future<void> selectImage() async {
     // Pick an image
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -142,7 +146,7 @@ class MemePreview extends StatelessWidget {
                     ? Center(
                         child: Icon(
                           Icons.add_photo_alternate_rounded,
-                          color: colorScheme.primary,
+                          color: colorScheme.secondary,
                           size: 128,
                         ),
                       )

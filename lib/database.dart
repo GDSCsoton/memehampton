@@ -42,8 +42,8 @@ class Database {
 
     Meme meme = Meme(
       id: doc.id,
-      uid: auth.currentUser!.uid,
-      url: imageUrl,
+      userId: auth.currentUser!.uid,
+      imageUrl: imageUrl,
       createdAt: DateTime.now(),
       votes: 0,
       caption: imageCaption,
