@@ -11,13 +11,16 @@ import 'package:memehampton/pages/home_page.dart';
 import 'package:memehampton/pages/sign_in_page.dart';
 import 'package:memehampton/pages/new_meme_page.dart';
 
+/// The entrypoint of the app.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Connects to our Firebase Project.
   await Firebase.initializeApp(options: _decodedFirebaseOptions());
   // Wait until Firebase Auth is aware of a user.
   await FirebaseAuth.instance.authStateChanges().first;
-  // Remove the # symbol from the url
+  // Removes the # symbol from the url.
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
+  // Hides the splash screen and runs the app.
   runApp(MemehamptonApp());
 }
 
@@ -32,6 +35,7 @@ FirebaseOptions _decodedFirebaseOptions() {
 class MemehamptonApp extends StatelessWidget {
   MemehamptonApp({Key? key}) : super(key: key);
 
+  /// Routes the app can navigate to.
   late final GoRouter _router = GoRouter(
     routes: [
       GoRoute(
