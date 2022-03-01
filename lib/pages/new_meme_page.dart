@@ -176,6 +176,7 @@ class MemeText extends StatelessWidget {
           fontWeight: FontWeight.bold,
           shadows: [Shadow(color: Colors.grey.shade800, offset: Offset(3, 3))],
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

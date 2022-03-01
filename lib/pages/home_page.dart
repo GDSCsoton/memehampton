@@ -82,6 +82,7 @@ class MemeList extends StatelessWidget {
 
     return FirestoreListView<Meme>(
       query: Database.getMemes(filter),
+      primary: false,
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: horizontalPadding),
       itemBuilder: (context, snapshot) {
         Meme meme = snapshot.data();
