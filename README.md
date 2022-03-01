@@ -1,4 +1,11 @@
-# memehampton
+# Memehampton
+
+A demo app for the University of Southampton Flutter Festival, hosted by the UoS Google Developer Student Club and led by [Britannio Jarrett](https://github.com/britannio).
+
+https://gdsc.community.dev/e/m8ugm2/
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/GDSCsoton/memehampton)
+
 
 # Adding packages
 

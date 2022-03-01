@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "OnlyMemes",
+    "description": "A demo app for the GDSC University of Southampton Flutter Festival.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
