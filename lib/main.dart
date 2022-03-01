@@ -49,8 +49,11 @@ class MemehamptonApp extends StatelessWidget {
         builder: (context, state) => NewMemPage(),
       ),
     ],
-    initialLocation: FirebaseAuth.instance.currentUser == null ? SignInPage.path : HomePage.path,
+    initialLocation: signedIn() ? HomePage.path : SignInPage.path,
   );
+
+  /// True if the user is signed in.
+  bool signedIn() => FirebaseAuth.instance.currentUser != null;
 
   @override
   Widget build(BuildContext context) {
