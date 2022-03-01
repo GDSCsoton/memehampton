@@ -10,7 +10,8 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // A prebuilt sign in screen provided by the flutterfire_ui package.
     return SignInScreen(
-      // The allowed sign in methods. Google/Apple/Facebook/... auth could be added in the future.
+      // The allowed sign in methods. Google/Apple/Facebook/... auth could
+      // be added in the future.
       providerConfigs: [EmailProviderConfiguration()],
       actions: [
         AuthStateChangeAction<SignedIn>((context, _) {

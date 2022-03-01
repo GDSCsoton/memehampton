@@ -140,6 +140,7 @@ class MemePreview extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
+                // The image or a placeholder icon.
                 imageBytes == null
                     ? Center(
                         child: Icon(
@@ -149,6 +150,7 @@ class MemePreview extends StatelessWidget {
                         ),
                       )
                     : Image.memory(imageBytes!, fit: BoxFit.cover),
+                // The meme caption.
                 MemeText(text: caption),
               ],
             ),
