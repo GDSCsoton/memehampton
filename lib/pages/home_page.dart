@@ -64,7 +64,7 @@ class NewMemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       tooltip: 'New Meme',
-      onPressed: () => GoRouter.of(context).push(NewMemPage.path),
+      onPressed: () => GoRouter.of(context).push(NewMemePage.path),
       child: Icon(Icons.add),
     );
   }

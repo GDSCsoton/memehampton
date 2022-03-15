@@ -45,8 +45,8 @@ class MemehamptonApp extends StatelessWidget {
         builder: (context, state) => SignInPage(),
       ),
       GoRoute(
-        path: NewMemPage.path,
-        builder: (context, state) => NewMemPage(),
+        path: NewMemePage.path,
+        builder: (context, state) => NewMemePage(),
       ),
     ],
     initialLocation: signedIn() ? HomePage.path : SignInPage.path,

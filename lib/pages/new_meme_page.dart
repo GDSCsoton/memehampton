@@ -9,14 +9,14 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memehampton/database.dart';
 
-class NewMemPage extends StatefulWidget {
+class NewMemePage extends StatefulWidget {
   static const String path = '/new-meme';
 
   @override
-  State<NewMemPage> createState() => _NewMemPageState();
+  State<NewMemePage> createState() => _NewMemePageState();
 }
 
-class _NewMemPageState extends State<NewMemPage> {
+class _NewMemePageState extends State<NewMemePage> {
   Uint8List? _imageBytes;
   String _imageCaption = '';
   final GlobalKey _repaintBoundaryKey = GlobalKey();
